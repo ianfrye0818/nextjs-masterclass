@@ -2,6 +2,11 @@ import Loading from '../loading';
 import TicketList from './TicketList';
 import { Suspense } from 'react';
 
+export const metadata = {
+  title: 'Dojo Helpdesk | Tickets',
+  description: 'A list of open tickets',
+};
+
 function Tickets() {
   return (
     <main>

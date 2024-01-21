@@ -9,6 +9,15 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }) {
+  const id = params.id;
+  const response = await fetch(`http://localhost:4000/tickets/${id}`);
+  const ticket = await response.json();
+  return {
+    title: `Dojo Helpdesk | ${ticket.title}`,
+  };
+}
+
 async function getTicket(id) {
   const response = await fetch(`http://localhost:4000/tickets/${id}`, { next: { revalidate: 60 } });
   if (!response.ok) {
