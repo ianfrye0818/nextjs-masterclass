@@ -41,6 +41,13 @@
       "body": "this is a body",
       "user_email": "ian@ian.com",
       "priority": "low"
+    },
+    {
+      "id": "dffe",
+      "title": "This is a ticket w/ lizzy",
+      "body": "oiawje",
+      "priority": "high",
+      "user_email": "ianfrye3@gmail.com"
     }
   ]
 }

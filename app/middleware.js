@@ -1,14 +1,9 @@
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
-  const currentUser = request.cookies.get('currentUser')?.value;
-
-  if (currentUser) {
-    return NextResponse.redirect(new URL('/tickets', request.url));
-  }
-  return NextResponse.redirect(new URL('/login', request.url));
+export async function middleware(req) {
+  const res = NextResponse.next();
+  const supabase = createMiddlewareClient({ req, res });
+  await supabase.auth.getSession();
+  return res;
 }
-
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
-};

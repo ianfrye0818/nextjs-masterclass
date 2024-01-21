@@ -11,6 +11,7 @@ export default function Login() {
   //handle loging in with email and password
   async function handleSubmit(e, email, password) {
     e.preventDefault();
+    setError('');
     const supabase = createClientComponentClient();
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -20,7 +21,7 @@ export default function Login() {
       setError(error.message);
     }
     if (!error) {
-      router.push('/tickets');
+      router.push('/');
     }
   }
   return (
