@@ -4,8 +4,10 @@ import Image from 'next/image';
 
 //photo import
 import logo from './dojo-logo.png';
+import { Space_Mono } from 'next/font/google';
+import LogoutButton from './LogoutButton';
 
-export default function NavBar() {
+export default function NavBar({ user }) {
   return (
     <nav>
       <Link href={'/'}>
@@ -20,7 +22,14 @@ export default function NavBar() {
       <h1>Dojo Helpdesk</h1>
       <Link href={'/'}>Home</Link>
       <Link href={'/tickets'}>Tickets</Link>
-      <Link href={'/tickets/create'}>New Ticket</Link>
+      <Link
+        className='mr-auto'
+        href={'/tickets/create'}
+      >
+        New Ticket
+      </Link>
+      {user && <span>{user.email}</span>}
+      <LogoutButton />
     </nav>
   );
 }
