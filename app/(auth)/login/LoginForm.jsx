@@ -10,7 +10,7 @@ export default function LoginForm() {
     e.preventDefault();
   }
   return (
-    <form onSubmit={handleSubmit}>
+    <form action={handleSubmit}>
       <label htmlFor='email'>Email</label>
       <input
         type='email'
