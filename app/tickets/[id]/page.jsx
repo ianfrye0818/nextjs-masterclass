@@ -1,24 +1,24 @@
-import React from 'react';
+import { notFound } from 'next/navigation';
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const response = await fetch('http://localhost:4000/tickets');
+  const tickets = await response.json();
+  return tickets.map((ticket) => ({
+    id: ticket.id,
+  }));
+}
 
 async function getTicket(id) {
-  try {
-    const response = await fetch(`http://localhost:4000/tickets/${id}`, {
-      next: { revalidate: 60 },
-    });
-    if (!response.ok) {
-      throw new Error('error fetching data');
-    }
-    return response.json();
-  } catch (error) {}
+  const response = await fetch(`http://localhost:4000/tickets/${id}`, { next: { revalidate: 60 } });
+  if (!response.ok) {
+    notFound();
+  }
+  return response.json();
 }
 
 export default async function TicketDetails({ params }) {
   const ticket = await getTicket(params.id);
-
-  if (!ticket) {
-    return <p className='text-center'>No Ticket found with this ID</p>;
-  }
-
   return (
     <main>
       <nav>
