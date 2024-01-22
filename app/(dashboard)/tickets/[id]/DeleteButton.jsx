@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { TiDelete } from 'react-icons/ti';
 
 export default function DeleteButton({ id }) {
   const [loading, setLoading] = useState(false);
@@ -12,13 +13,10 @@ export default function DeleteButton({ id }) {
       method: 'DELETE',
     });
     const data = await response.json();
-    if (data.error) {
-      console.log(error);
-      setLoading(false);
-    }
+
     if (!data.error) {
+      router.refresh();
       router.push('/tickets');
-      setLoading(false);
     }
   }
   return (
@@ -27,6 +25,8 @@ export default function DeleteButton({ id }) {
       onClick={handleClick}
       disabled={loading}
     >
+      {' '}
+      <TiDelete />
       {loading ? 'Deleting...' : 'Delete Ticket'}
     </button>
   );

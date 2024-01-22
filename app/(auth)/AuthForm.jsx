@@ -24,6 +24,7 @@ export default function AuthForm({ handleSubmit }) {
         onChange={(e) => setPassword(e.target.value)}
       />
       <button
+        className='btn-primary'
         type='submit'
         disabled={isloading}
       >

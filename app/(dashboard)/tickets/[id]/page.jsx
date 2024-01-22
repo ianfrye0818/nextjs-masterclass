@@ -10,7 +10,7 @@ async function generateMetadata({ params }) {
   const { data: ticket } = await supabase.from('Tickets').select().eq('id', params.id).single();
 
   return {
-    title: `Dojo Helpdesk | ${ticket.title || 'Ticket not found'}`,
+    title: `Dojo Helpdesk | ${ticket?.title || 'Ticket not found'}`,
   };
 }
 
