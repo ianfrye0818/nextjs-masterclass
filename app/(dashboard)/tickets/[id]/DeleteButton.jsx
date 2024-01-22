@@ -17,6 +17,8 @@ export default function DeleteButton({ id }) {
     if (!data.error) {
       router.refresh();
       router.push('/tickets');
+    } else {
+      throw new Error(data.error);
     }
   }
   return (

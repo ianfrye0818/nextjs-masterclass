@@ -18,7 +18,6 @@ export async function POST(request) {
     .insert([{ ...ticket, user_email: session.user.email }])
     .select()
     .single();
-  console.log(data);
   // return the data
   return NextResponse.json({ data, error });
 }

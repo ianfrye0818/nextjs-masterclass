@@ -23,7 +23,7 @@ export default function NavBar({ user }) {
       <Link href={'/'}>Home</Link>
       <Link href={'/tickets'}>Tickets</Link>
       <Link
-        className='mr-auto'
+        className='mr-auto btn-primary p-2'
         href={'/tickets/create'}
       >
         New Ticket
